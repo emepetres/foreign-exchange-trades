@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'trades.apps.TradesConfig'
 ]
 
 MIDDLEWARE = [
@@ -42,7 +43,10 @@ ROOT_URLCONF = 'fetrades.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'fetrades/templates'),
+            os.path.join(BASE_DIR, 'trades/templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

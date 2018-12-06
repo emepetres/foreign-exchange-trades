@@ -23,4 +23,5 @@ pip install -r requirements-dev.txt
 cd fetrades
 python manage.py makemigrations
 python manage.py migrate
+python manage.py createsuperuser
 deactivate
