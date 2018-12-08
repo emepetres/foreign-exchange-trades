@@ -20,6 +20,7 @@ def new_trade(request):
     if request.method == 'POST':
         form = TradeForm(request.POST)
         if form.is_valid():
+            # TODO recheck that values are the same than in fixer.io
             form.save()
             return HttpResponseRedirect(reverse('trades'))
     else:
