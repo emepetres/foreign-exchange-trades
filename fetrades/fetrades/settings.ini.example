@@ -3,3 +3,5 @@ DEBUG=True # don't run with debug turned on in production!
 
 SECRET_KEY='[random alphanumeric string]'
 ALLOWED_HOSTS=127.0.0.1,localhost
+
+FIXER_API_KEY=***

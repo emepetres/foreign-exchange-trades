@@ -63,5 +63,9 @@
 
 {% block javascript %}
 <script src="{% static "trades/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "trades/js/ajax_setup.js" %}"></script>
+<script type=text/javascript> <!-- django vars-->
+    var get_rate_url = "{% url 'get_rate' %}"
+</script>
 <script src="{% static "trades/js/new_trade.js" %}"></script>
 {% endblock %}

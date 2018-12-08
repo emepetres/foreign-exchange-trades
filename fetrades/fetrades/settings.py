@@ -120,3 +120,5 @@ USE_TZ = True
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 STATIC_URL = '/static/'
+
+FIXER_API_KEY = config('FIXER_API_KEY')
