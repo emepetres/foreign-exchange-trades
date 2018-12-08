@@ -33,8 +33,6 @@ function renderBuyAmount() {
     rate = parseInt($(RATE_ID).val())
     samt = parseInt($(SAMT_ID).val())
 
-    console.log(rate)
-    console.log(samt)
     if (!isNaN(rate) && !isNaN(samt)) {
         $(BAMT_ID).val(rate * samt)
     } else {
