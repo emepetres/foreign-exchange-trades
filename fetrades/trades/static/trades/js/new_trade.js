@@ -5,18 +5,15 @@ SAMT_ID = "#id_sell_amount"; // sell amount input id
 BAMT_ID = "#id_buy_amount"; // buy amount input id
 
 $(SCCY_ID).on('change', function () {
-    renderRate()
-    renderBuyAmount()
+    renderRate(callback = renderBuyAmount)
 });
 
 $(BCCY_ID).on('change', function () {
-    renderRate()
-    renderBuyAmount()
+    renderRate(callback = renderBuyAmount)
 });
 
 $(SAMT_ID).on('change', function () {
-    renderRate() // render the rate again, as it may change
-    renderBuyAmount()
+    renderRate(callback = renderBuyAmount)
 });
 
 function renderRate() {
@@ -47,7 +44,8 @@ function renderRate() {
                 message = "Couldn't get the rate: ";
                 message += jqXHR.status + ": " + errorThrown
                 alert(message);
-            }
+            },
+            complete: callback
         });
     } else {
         $(RATE_ID).val("")

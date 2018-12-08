@@ -7,13 +7,17 @@ from django.core.validators import MinValueValidator
 from trades.currency_codes import CURRENCY_CODES
 
 
+def _build_id():
+    """Builds a new id of type 'TR' + 7 alphanumerics"""
+    return 'TR' + get_random_string(7).upper()
+
+
 class Trade(models.Model):
     """Model of a single foreign exchange trade"""
     id = models.CharField(
         primary_key=True,
-        max_length=9)
-    # default function for id is set below,
-    #   as full class definition is needed beforehand
+        max_length=9,
+        default=_build_id)
 
     sell_currency = models.CharField(
         max_length=3,
@@ -32,7 +36,7 @@ class Trade(models.Model):
         validators=[MinValueValidator(Decimal('0.01'))])
 
     rate = models.DecimalField(  # > 0.0001
-        max_digits=6,
+        max_digits=10,
         decimal_places=4,
         validators=[MinValueValidator(Decimal('0.0001'))])
 
@@ -55,7 +59,11 @@ class Trade(models.Model):
 
     @classmethod
     def _build_id(cls):
-        """Builds a new unique id of type 'TR' + 7 alphanumerics"""
+        """Builds a new unique id of type 'TR' + 7 alphanumerics
+
+        NOTE: Cannot be used as primary key generator because full class
+        definition is needed beforehand.
+        """
         while True:
             new_id = 'TR' + get_random_string(7).upper()
             try:
@@ -64,6 +72,12 @@ class Trade(models.Model):
             except cls.DoesNotExist:
                 return new_id
 
-
-# set the id generator
-Trade.id.default = Trade._build_id
+    def __str__(self):
+        return "[{}] {}{}->{}{}, rate {} | {}".format(
+            self.id,
+            self.sell_amount,
+            self.sell_currency,
+            self.buy_amount,
+            self.buy_currency,
+            self.rate,
+            self.date_booked)
