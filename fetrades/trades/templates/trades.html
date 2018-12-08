@@ -12,7 +12,7 @@
         <th>Rate</th>
         <th>Date Booked</th>
     </tr>
-    {% for item in trades_list %}
+    {% for item in trades_list reversed %}
     <tr>
         <td>{{ item.sell_currency }}</td>
         <td>{{ item.sell_amount }}</td>

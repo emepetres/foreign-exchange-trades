@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'trades.apps.TradesConfig'
 ]
 
@@ -117,4 +118,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 STATIC_URL = '/static/'
