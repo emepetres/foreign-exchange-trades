@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block custom-css %}
+<link rel="stylesheet" href="{% static 'trades/css/new_trade.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form action="/new_trade" method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    {{ form.source.errors }}
+    {{ form.source }}
+
+    <div class="row">
+        <div class="column">
+            <div>
+                {{ form.sell_currency.label_tag }}
+                {{ form.sell_currency.errors }}
+                {{ form.sell_currency }}
+            </div>
+            <div>
+                {{ form.sell_amount.label_tag }}
+                {{ form.sell_amount.errors }}
+                {{ form.sell_amount }}
+            </div>
+            <button type="submit">Create</button>
+        </div>
+        <div class="column">
+            <div>
+                {{ form.rate.label_tag }}
+                {{ form.rate.errors }}
+                {% render_field form.rate readonly=True %}
+            </div>
+        </div>
+        <div class="column">
+            <div>
+                {{ form.buy_currency.label_tag }}
+                {{ form.buy_currency.errors }}
+                {{ form.buy_currency }}
+            </div>
+            <div>
+                {{ form.buy_amount.label_tag }}
+                {{ form.buy_amount.errors }}
+                {% render_field form.buy_amount readonly=True %}
+            </div>
+            <button
+                type="submit" 
+                onclick="
+                    window.location='{% url 'trades' %}';
+                    return false;">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static "trades/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "trades/js/new_trade.js" %}"></script>
+{% endblock %}

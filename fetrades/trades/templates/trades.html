@@ -3,6 +3,10 @@
 
 {% block content %}
 
+<form action="{% url 'new_trade' %}">
+    <input type="submit" value="New trade" />
+</form>
+
 <table>
     <tr>
         <th>Sell CCY</th>

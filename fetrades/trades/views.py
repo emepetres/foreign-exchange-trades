@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from trades.models import Trade
 
@@ -17,15 +18,10 @@ def landing(request):
 def new_trade(request):
     # if POST call, process data, else render the form
     if request.method == 'POST':
-        if 'cancel' in request.POST:
-            return HttpResponseRedirect('/')  # FIXME
         form = TradeForm(request.POST)
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
             form.save()
-            return HttpResponseRedirect('/')  # FIXME
+            return HttpResponseRedirect(reverse('trades'))
     else:
         form = TradeForm()
 
