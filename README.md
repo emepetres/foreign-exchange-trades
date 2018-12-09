@@ -41,6 +41,7 @@ A production environment with Postgres, Gunicorn and Nginx.
 	* Set `DEBUG=False` for production-like environments
 	* Set the list of allowed hosts in `ALLOWED_HOSTS`, separated by comma.
 	* Set `FIXER_API_KEY` to the appropiate _fixer.io_ api key. Get one for free at https://fixer.io/.
+	* Change `PORT` to serve the website in a port different from 1337.
 	* Change `SQL_DATABASE` to use a different database name.
 	* Change `SQL_USER` to use a different user name to access the database.
 	* Change `SQL_PASSWORD` to use a different password to access the database.
