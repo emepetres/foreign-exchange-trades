@@ -126,4 +126,5 @@ STATICFILES_DIRS = (
     os.path.join('trades', 'static')
 )
 
+WEBNAME = config('WEBNAME')
 FIXER_API_KEY = config('FIXER_API_KEY')

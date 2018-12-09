@@ -1,6 +1,8 @@
 [settings]
 DEBUG=True # don't run with debug turned on in production!
 
+WEBNAME=Foreign Exchange Trades
+
 SECRET_KEY='[random alphanumeric string]'
 ALLOWED_HOSTS=127.0.0.1,localhost
 

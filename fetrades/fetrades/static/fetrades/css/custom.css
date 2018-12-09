@@ -1,4 +1,11 @@
+body {
+    background-color: whitesmoke;
+}
+
 #fet_header {
     padding: 20px;
-    padding-bottom: 30px;
+}
+
+.table {
+    background-color: lightcyan;
 }

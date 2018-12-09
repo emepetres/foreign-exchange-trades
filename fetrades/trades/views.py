@@ -1,10 +1,10 @@
 import json
 
+import requests
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-import requests
 from fetrades import settings
 from trades.models import Trade
 
@@ -13,6 +13,7 @@ from .forms import TradeForm
 
 def trades(request):
     context = {
+        'webname': settings.WEBNAME,
         'trades_list': Trade.list_all(return_queryset=True)
     }
 
@@ -30,7 +31,12 @@ def new_trade(request):
     else:
         form = TradeForm()
 
-    return render(request, 'new_trade.html', {'form': form})
+    context = {
+        'webname': settings.WEBNAME,
+        'form': form
+    }
+
+    return render(request, 'new_trade.html', context)
 
 
 def get_rate(request):

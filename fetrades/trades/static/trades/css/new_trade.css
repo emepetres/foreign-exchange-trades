@@ -1,6 +1,7 @@
 #new_trade_container {
     max-width: 800px;
     padding: 30px;
+    background-color: lightcyan;
 }
 
 input, select {
