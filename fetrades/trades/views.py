@@ -11,7 +11,7 @@ from trades.models import Trade
 from .forms import TradeForm
 
 
-def landing(request):
+def trades(request):
     context = {
         'trades_list': Trade.list_all(return_queryset=True)
     }
@@ -24,7 +24,7 @@ def new_trade(request):
     if request.method == 'POST':
         form = TradeForm(request.POST)
         if form.is_valid():
-            # TODO recheck that values are the same than in fixer.io
+            # NOTE: recheck that values are the same than in fixer.io
             form.save()
             return HttpResponseRedirect(reverse('trades'))
     else:

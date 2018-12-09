@@ -4,29 +4,33 @@
 {% block content %}
 
 <form action="{% url 'new_trade' %}">
-    <input type="submit" value="New trade" />
+    <input type="submit" value="New trade" class="btn btn-primary float-right"/>
 </form>
 
 {% if trades_list %}
-    <table>
-        <tr>
-            <th>Sell CCY</th>
-            <th>Sell Amount</th>
-            <th>Buy CCY</th>
-            <th>Buy Amount</th>
-            <th>Rate</th>
-            <th>Date Booked</th>
-        </tr>
-        {% for item in trades_list reversed %}
-        <tr>
-            <td>{{ item.sell_currency }}</td>
-            <td>{{ item.sell_amount }}</td>
-            <td>{{ item.buy_currency }}</td>
-            <td>{{ item.buy_amount }}</td>
-            <td>{{ item.rate }}</td>
-            <td>{{ item.date_booked }}</td>
-        </tr>
-        {% endfor %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Sell CCY</th>
+                <th>Sell Amount</th>
+                <th>Buy CCY</th>
+                <th>Buy Amount</th>
+                <th>Rate</th>
+                <th>Date Booked</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in trades_list reversed %}
+            <tr>
+                <td>{{ item.sell_currency }}</td>
+                <td>{{ item.sell_amount }}</td>
+                <td>{{ item.buy_currency }}</td>
+                <td>{{ item.buy_amount }}</td>
+                <td>{{ item.rate }}</td>
+                <td>{{ item.date_booked }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% else %}
     <p>No trades yet!</p>

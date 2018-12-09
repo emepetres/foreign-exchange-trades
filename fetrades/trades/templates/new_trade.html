@@ -16,45 +16,60 @@
     {{ form.source.errors }}
     {{ form.source }}
 
-    <div class="row">
-        <div class="column">
-            <div>
-                {{ form.sell_currency.label_tag }}
-                {{ form.sell_currency.errors }}
-                {{ form.sell_currency }}
+    <div id="new_trade_container" class="container border border-primary rounded">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div>
+                    {{ form.sell_currency.label_tag }}
+                </div><div>
+                    {{ form.sell_currency.errors }}
+                </div><div>
+                    {{ form.sell_currency }}
+                </div>
+                <div>
+                    {{ form.sell_amount.label_tag }}
+                </div><div>
+                    {{ form.sell_amount.errors }}
+                </div><div>
+                    {{ form.sell_amount }}
+                </div>
+                <button type="submit" class="btn btn-primary float-left">Create</button>
             </div>
-            <div>
-                {{ form.sell_amount.label_tag }}
-                {{ form.sell_amount.errors }}
-                {{ form.sell_amount }}
+            <div class="col-md-4 col-sm-12">
+                <div>
+                    {{ form.rate.label_tag }}
+                </div><div>
+                    {{ form.rate.errors }}
+                </div><div>
+                    &#9658;
+                    {% render_field form.rate readonly=True %}
+                    &#9658;
+                </div>
             </div>
-            <button type="submit">Create</button>
-        </div>
-        <div class="column">
-            <div>
-                {{ form.rate.label_tag }}
-                {{ form.rate.errors }}
-                {% render_field form.rate readonly=True %}
+            <div class="col-md-4 col-sm-12">
+                <div class="text-right">
+                    {{ form.buy_currency.label_tag }}
+                </div><div class="text-right">
+                    {{ form.buy_currency.errors }}
+                </div><div class="text-right">
+                    {{ form.buy_currency }}
+                </div>
+                <div class="text-right">
+                    {{ form.buy_amount.label_tag }}
+                </div><div class="text-right">
+                    {{ form.buy_amount.errors }}
+                </div><div class="text-right">
+                    {% render_field form.buy_amount readonly=True %}
+                </div>
+                <button
+                    type="submit" 
+                    onclick="
+                        window.location='{% url 'trades' %}';
+                        return false;"
+                    class="btn btn-warning float-right">
+                    Cancel
+                </button>
             </div>
-        </div>
-        <div class="column">
-            <div>
-                {{ form.buy_currency.label_tag }}
-                {{ form.buy_currency.errors }}
-                {{ form.buy_currency }}
-            </div>
-            <div>
-                {{ form.buy_amount.label_tag }}
-                {{ form.buy_amount.errors }}
-                {% render_field form.buy_amount readonly=True %}
-            </div>
-            <button
-                type="submit" 
-                onclick="
-                    window.location='{% url 'trades' %}';
-                    return false;">
-                Cancel
-            </button>
         </div>
     </div>
 </form>
@@ -62,7 +77,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="{% static "trades/js/jquery-3.3.1.min.js" %}"></script>
 <script src="{% static "trades/js/ajax_setup.js" %}"></script>
 <script type=text/javascript> <!-- django vars-->
     var get_rate_url = "{% url 'get_rate' %}"

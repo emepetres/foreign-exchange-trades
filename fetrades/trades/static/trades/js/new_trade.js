@@ -16,7 +16,7 @@ $(SAMT_ID).on('change', function () {
     renderRate(callback = renderBuyAmount)
 });
 
-function renderRate() {
+function renderRate(callback = null) {
     sell_ccy = $(SCCY_ID).val()
     buy_ccy = $(BCCY_ID).val()
 
