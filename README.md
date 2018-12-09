@@ -6,9 +6,6 @@ NOTES:
 * Four decimal precision for trade rate
 * MAX trade amount: 99,999,999.99
 
-TODO:
-* PRODUCTION/DOCKER
-
 
 ## Deploy
 
