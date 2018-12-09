@@ -13,12 +13,15 @@ TODO:
 ## Deploy
 
 ### Standalone
-**Requirements** The standalone deployment requires a machine with _python 3.7_ and _pipenv_.
+The standalone deployment uses a local database from SQLite and a lightweight server, and it is not meant for production.
+
+**Requirements** _python 3.7_ and _pipenv_.
 
 **WARNING:** _DO NOT USE THIS SERVER IN A PRODUCTION SETTING_
 
 0. Navigate to _fetrades_ folder
 1. Copy _settings.ini.example_ to _settings.ini_ and edit the latter:
+	* Set `WEBNAME` to the title of the website
 	* Set `SECRET_KEY` to an alphanumeric random string
 	* Set `DEBUG=False` for production-like environments
 	* Set the list of allowed hosts in `ALLOWED_HOSTS`, separated by comma.
@@ -27,7 +30,19 @@ TODO:
 3. Run `./up.sh` to run the application on http://localhost:8000.
 
 ### Production environment
-To Be Done
+A production environment with Postgres, Gunicorn and Nginx.
+
+**Requirements** _Docker_ and _Docker Compose_.
+
+0. Navigate to _docker_ folder
+1. Copy _example.env_ to _.env_ and edit the latter:
+	* Set `WEBNAME` to the title of the website
+	* Set `SECRET_KEY` to an alphanumeric random string
+	* Set `DEBUG=False` for production-like environments
+	* Set the list of allowed hosts in `ALLOWED_HOSTS`, separated by comma.
+	* Set `FIXER_API_KEY` to the appropiate _fixer.io_ api key. Get one for free at https://fixer.io/.
+2. Run `sudo docker-compose build` to build the container
+3. Run `sudo docker-compose up -d` to run the application on http://localhost:8000.
 
 
 ## Test
