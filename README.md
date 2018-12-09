@@ -13,7 +13,7 @@ TODO:
 ## Deploy
 
 ### Standalone
-**Requirements** The standalone deployment requires a machine with _python 3_, _pip_ and _virtualenv_, and virtualenv must be accesible by the command `virtualenv3` in the path.
+**Requirements** The standalone deployment requires a machine with _python 3.7_ and _pipenv_.
 
 **WARNING:** _DO NOT USE THIS SERVER IN A PRODUCTION SETTING_
 

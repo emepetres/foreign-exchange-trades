@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
 
-source .venv/bin/activate
-python manage.py test
-deactivate
+pipenv run python manage.py test
+

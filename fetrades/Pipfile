@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+autopep8 = "*"
+flake8 = "*"
+pylint = "*"
+
+[packages]
+django-widget-tweaks = "==1.4.3"
+python-decouple = "==3.1"
+requests = "==2.20.1"
+Django = "==2.1.4"
+
+[requires]
+python_version = "3.7"

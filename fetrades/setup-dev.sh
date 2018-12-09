@@ -1,8 +1,7 @@
 #!/bin/bash
 set -e
 
-./setup.sh
-
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-deactivate
+pipenv install --dev
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+pipenv run python manage.py createsuperuser
