@@ -9,9 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-SECRET_KEY = os.getenv('SECRET_KEY')
-if SECRET_KEY is None:
-    SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
@@ -80,8 +78,14 @@ WSGI_APPLICATION = 'fetrades.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv(
+            'SQL_DATABASE',
+            os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': os.getenv('SQL_USER', 'user'),
+        'PASSWORD': os.getenv('SQL_PASSWORD', 'password'),
+        'HOST': os.getenv('SQL_HOST', 'localhost'),
+        'PORT': os.getenv('SQL_PORT', '5432'),
     }
 }
 
@@ -138,10 +142,5 @@ STATICFILES_DIRS = (
     os.path.join('trades', 'static')
 )
 
-WEBNAME = os.getenv('WEBNAME')
-if WEBNAME is None:
-    WEBNAME = config('WEBNAME')
-
-FIXER_API_KEY = os.getenv('FIXER_API_KEY')
-if FIXER_API_KEY is None:
-    FIXER_API_KEY = config('FIXER_API_KEY')
+WEBNAME = os.getenv('WEBNAME', config('WEBNAME'))
+FIXER_API_KEY = os.getenv('FIXER_API_KEY', config('FIXER_API_KEY'))

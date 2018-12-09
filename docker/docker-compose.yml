@@ -5,13 +5,31 @@ services:
     build: ../.
     command: python /usr/src/fetrades/manage.py runserver 0.0.0.0:8000
     volumes:
-    - ../fetrades/:/usr/src/fetrades/
+      - ../fetrades/:/usr/src/fetrades/
     ports:
       - 8000:8000
     environment:
-    - WEBNAME=${WEBNAME}
-    - FIXER_API_KEY=${FIXER_API_KEY}
-    - ALLOWED_HOSTS=${ALLOWED_HOSTS}
-    - SECRET_KEY=${SECRET_KEY}
-    - DEBUG=${DEBUG}
+      - WEBNAME=${WEBNAME}
+      - FIXER_API_KEY=${FIXER_API_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=${SQL_DATABASE}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+      - SQL_HOST=db
+      - SQL_PORT=5432
+    depends_on:
+      - db
+  db:
+    image: postgres:10.5-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${SQL_DATABASE}
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
 
+volumes:
+  postgres_data:
