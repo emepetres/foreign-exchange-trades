@@ -109,3 +109,6 @@ venv.bak/
 
 # config
 *.ini
+
+# global static files
+/static/
