@@ -3,7 +3,7 @@ version: '3.7'
 services:
   web:
     build: ../.
-    command: python /usr/src/fetrades/manage.py runserver 0.0.0.0:8000
+    command: gunicorn fetrades.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ../fetrades/:/usr/src/fetrades/
     ports:
