@@ -17,7 +17,7 @@ The standalone deployment uses a local database from SQLite and a lightweight se
 **WARNING:** _DO NOT USE THIS SERVER IN A PRODUCTION SETTING_
 
 0. Navigate to _fetrades_ folder
-1. Copy _settings.ini.example_ to _settings.ini_ and edit the latter:
+1. Copy fetrades/_settings.ini.example_ to fetrades/_settings.ini_ and edit the latter:
 	* Set `WEBNAME` to the title of the website
 	* Set `SECRET_KEY` to an alphanumeric random string
 	* Set `DEBUG=False` for production-like environments
@@ -27,7 +27,7 @@ The standalone deployment uses a local database from SQLite and a lightweight se
 3. Run `./up.sh` to run the application on http://localhost:8000.
 
 ### Production environment
-A production environment with Postgres, Gunicorn and Nginx.
+A production environment with PostgreSQL, Gunicorn and Nginx.
 
 **Requirements** _Docker_ and _Docker Compose_.
 
