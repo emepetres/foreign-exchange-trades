@@ -12,6 +12,7 @@ from .forms import TradeForm
 
 
 def trades(request):
+    """Render a list of trades"""
     context = {
         'webname': settings.WEBNAME,
         'trades_list': Trade.list_all(return_queryset=True)
@@ -21,11 +22,13 @@ def trades(request):
 
 
 def new_trade(request):
+    """Render a form to create a trade (GET), 
+    or validate and save the inputs from a previously rendered form (POST)"""
     # if POST call, process data, else render the form
     if request.method == 'POST':
         form = TradeForm(request.POST)
         if form.is_valid():
-            # NOTE: recheck that values are the same than in fixer.io
+            # IMPROVEMENT: recheck that values are the same than in fixer.io
             form.save()
             return HttpResponseRedirect(reverse('trades'))
     else:
@@ -40,6 +43,7 @@ def new_trade(request):
 
 
 def get_rate(request):
+    """Retrieve the rate between two currencies from fixer.io"""
     if request.method != 'POST':
         return JsonResponse({'error': 'The request only allows POST'})
 
@@ -60,6 +64,7 @@ def get_rate(request):
     # get data from fixer.io
     data = json.loads(requests.request("GET", url).text)
 
+    # check that the response is what it is expected
     if 'success' not in data \
             or ('rates' not in data and 'error' not in data):
         return JsonResponse({'error': 'Unexpected response from fixer.io'})

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-./setup.sh
-
 source .venv/bin/activate
-pip install -r requirements-dev.txt
+python manage.py runserver
 deactivate

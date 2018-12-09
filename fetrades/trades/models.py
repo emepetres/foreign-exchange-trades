@@ -43,6 +43,11 @@ class Trade(models.Model):
     date_booked = models.DateTimeField(  # auto, current timestamp
         auto_now_add=True)
 
+    # Create an index over date_booked field
+    class Meta:
+        indexes = [
+            models.Index(fields=['date_booked'])]
+
     def to_dict(self):
         response = model_to_dict(self)
         response['date_booked'] = self.date_booked
@@ -50,7 +55,7 @@ class Trade(models.Model):
 
     @classmethod
     def list_all(cls, return_queryset=False):
-        trade_list = cls.objects.all()
+        trade_list = cls.objects.all().order_by('date_booked')
 
         if return_queryset:
             return trade_list

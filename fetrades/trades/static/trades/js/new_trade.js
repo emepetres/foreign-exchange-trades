@@ -16,6 +16,7 @@ $(SAMT_ID).on('change', function () {
     renderRate(callback = renderBuyAmount)
 });
 
+// Renders the currency rate, and calls the callback
 function renderRate(callback = null) {
     sell_ccy = $(SCCY_ID).val()
     buy_ccy = $(BCCY_ID).val()
@@ -52,6 +53,7 @@ function renderRate(callback = null) {
     }
 }
 
+// Render the amount to buy, according to the currency rate and the sell amount
 function renderBuyAmount() {
     rate = parseFloat($(RATE_ID).val()).toFixed(4)
     samt = parseFloat($(SAMT_ID).val()).toFixed(2)

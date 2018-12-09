@@ -1,3 +1,5 @@
+"""Holds all the three-letter currency codes as of December 2018"""
+
 CURRENCY_CODES = (
     ('AFA', 'AFA'),
     ('ALL', 'ALL'),
