@@ -1,4 +1,5 @@
 import os
+import csv
 from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -8,12 +9,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
+if SECRET_KEY is None:
+    SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = os.getenv('DEBUG')
+if DEBUG is None:
+    DEBUG = config('DEBUG', default=False, cast=bool)
+else:
+    DEBUG = DEBUG.lower() in ('true', 'True')
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
+if ALLOWED_HOSTS is None:
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+else:
+    # one line csv cast
+    ALLOWED_HOSTS = list(csv.reader([ALLOWED_HOSTS]))[0]
 
 
 # Application definition
@@ -126,5 +138,10 @@ STATICFILES_DIRS = (
     os.path.join('trades', 'static')
 )
 
-WEBNAME = config('WEBNAME')
-FIXER_API_KEY = config('FIXER_API_KEY')
+WEBNAME = os.getenv('WEBNAME')
+if WEBNAME is None:
+    WEBNAME = config('WEBNAME')
+
+FIXER_API_KEY = os.getenv('FIXER_API_KEY')
+if FIXER_API_KEY is None:
+    FIXER_API_KEY = config('FIXER_API_KEY')
