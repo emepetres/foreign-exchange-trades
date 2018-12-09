@@ -43,7 +43,7 @@ A production environment with Postgres, Gunicorn and Nginx.
 	* Change `SQL_USER` to use a different user name to access the database.
 	* Change `SQL_PASSWORD` to use a different password to access the database.
 2. Run `sudo docker-compose build` to build the container
-3. Run `sudo docker-compose up -d` to run the application on http://localhost:8000.
+3. Run `sudo docker-compose up -d` to run the application on http://localhost:[PORT].
 
 
 ## Test
@@ -58,4 +58,5 @@ To make modifications, the standalone deployment is the right one. Use `/setup-d
 _Suggestions to improve:_
 * Validate data again on the server against Fixer.io, before creating the trade.
 * Ensure uniqueness in trade Id generation, by checking if the generated id exists in the system.
-
+* Make django image able to run independently from docker-compose/postgres
+* Build the docker image automatically by cloning the repository inside the container
